@@ -80,7 +80,7 @@ pip list
 
 To train a model, use the `train_model()` function from `train.py`. Here's a sample usage:
 
-```python
+```aiignore
 train_model(
     num_epochs=10,
     batch_size=32,
