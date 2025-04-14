@@ -37,16 +37,13 @@ You can download the dataset directly using:
 ```aiignore
 kaggle datasets download -d alessiocorrado99/animals10 --unzip
 ```
+Each subfolder inside `train/` and `test/` represents a class label.
 
 ## Supported Architectures
 
 - 🟦 `TinyVGG`: A simple CNN architecture modeled after the [CNN Explainer](https://poloclub.github.io/cnn-explainer/)
 - 🟥 `ResNet18`: Pretrained model from `torchvision.models`
 - 🟩 `VGG16`: Pretrained model from `torchvision.models`
-
-```aiignore
-
-Each subfolder inside `train/` and `test/` represents a class label.
 
 ## Requirements
 
