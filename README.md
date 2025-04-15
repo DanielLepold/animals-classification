@@ -9,22 +9,24 @@ This project implements an image classification pipeline for animal images using
 
 ```aiignore
 📁 src/
-├── data_setup.py        # Contains logic to prepare DataLoaders
-├── engine.py            # Training and evaluation loop functions
-├── model_builder.py     # Functions to create and configure models
 ├── input/
 │   ├── test/            # Input test data
 │   └── train/           # Input train data
-├── models/
-│   └── your_model.pth   # Saved trained models
 ├── logs/
 │   └── your_logs.pth    # Saved logs during running
-├── main.py              # Main training script
-├── predictions.py       # Visualization
-├── utils.py             # Utility functions (e.g., saving models)
+├── models/
+│   └── your_models.pth   # Saved trained models
+├── data_setup.py        # Contains logic to prepare DataLoaders
+├── engine.py            # Training and evaluation loop functions
 ├── logger.py            # Logging configuration
-└── model_types.py       # Enum class defining supported model architectures
+├── main.py              # Main
+├── model_builder.py     # Functions to create and configure models
+├── model_types.py       # Enum class defining supported model architectures
+├── predictions.py       # Visualization
+├── train.py             # Training script
+└── utils.py             # Utility functions (e.g., saving models)
 README.md                # You're here!
+requirements.txt         # Packages to install
 ```
 
 ## 🐾 Dataset
