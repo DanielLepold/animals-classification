@@ -96,8 +96,6 @@ After installation, you can verify that the required packages are installed by r
 pip list
 ```
 
----
-
 ## 🚀 Running the Training Script
 
 To train a model, run the following script from the root directory, where the main is located:
@@ -125,8 +123,6 @@ You can customize training with the following optional arguments:
 | `--train_dir`     | Directory path for training data | `./input/train` |
 | `--test_dir`      | Directory path for test data     | `./input/test`  |
 
----
-
 ### 🧪 Example
 
 ```bash
@@ -134,8 +130,6 @@ python main.py --model_type TINY_VGG --model_name TINY_VGG4 --num_epochs 80 --hi
 ```
 
 This command will train the `TinyVGG` model for 25 epochs with a learning rate of `0.001` and save the model as `tiny_vgg_model.pth`.
-
----
 
 ## Logs
 
