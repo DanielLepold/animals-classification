@@ -79,23 +79,28 @@ def test_step(model: torch.nn.Module,
               dataloader: torch.utils.data.DataLoader,
               loss_fn: torch.nn.Module,
               device: torch.device) -> Tuple[float, float]:
-  """Tests a PyTorch model for a single epoch.
+  """
+  Evaluates a PyTorch model on a testing dataset for a single epoch.
 
-  Turns a target PyTorch model to "eval" mode and then performs
-  a forward pass on a testing dataset.
+  This function switches the model to evaluation mode (`model.eval()`), disables
+  gradient computation to speed up inference and reduce memory usage, and performs
+  a forward pass through the model on the test dataset. It calculates and returns
+  the average loss and accuracy over the entire test set.
 
   Args:
-  model: A PyTorch model to be tested.
-  dataloader: A DataLoader instance for the model to be tested on.
-  loss_fn: A PyTorch loss function to calculate loss on the test data.
-  device: A target device to compute on (e.g. "cuda" or "cpu").
+      model (torch.nn.Module): The PyTorch model to be evaluated.
+      dataloader (torch.utils.data.DataLoader): DataLoader containing the test data.
+      loss_fn (torch.nn.Module): Loss function to compute the error on test predictions.
+      device (torch.device): Device to perform computations on ("cuda" or "cpu").
 
   Returns:
-  A tuple of testing loss and testing accuracy metrics.
-  In the form (test_loss, test_accuracy). For example:
+      Tuple[float, float]: A tuple containing the average test loss and accuracy.
+          Format: (test_loss, test_accuracy)
 
-  (0.0223, 0.8985)
+  Example:
+      test_loss, test_acc = test_step(model, test_loader, loss_fn, device)
   """
+
   # Put model in eval mode
   model.eval()
 
@@ -133,37 +138,40 @@ def train(model: torch.nn.Module,
           loss_fn: torch.nn.Module,
           epochs: int,
           device: torch.device) -> Dict[str, List]:
-  """Trains and tests a PyTorch model.
+  """
+  Trains and evaluates a PyTorch model over a number of epochs.
 
-  Passes a target PyTorch models through train_step() and test_step()
-  functions for a number of epochs, training and testing the model
-  in the same epoch loop.
+  This function loops through the training and testing phases for a specified
+  number of epochs. For each epoch, it trains the model on the training dataset
+  and evaluates it on the testing dataset. Metrics such as loss and accuracy
+  are logged and stored throughout the process.
 
-  Calculates, prints and stores evaluation metrics throughout.
+  Additionally, early stopping is implemented: if the training loss drops below
+  0.2, the training stops early.
 
   Args:
-  model: A PyTorch model to be trained and tested.
-  train_dataloader: A DataLoader instance for the model to be trained on.
-  test_dataloader: A DataLoader instance for the model to be tested on.
-  optimizer: A PyTorch optimizer to help minimize the loss function.
-  loss_fn: A PyTorch loss function to calculate loss on both datasets.
-  epochs: An integer indicating how many epochs to train for.
-  device: A target device to compute on (e.g. "cuda" or "cpu").
+      model (torch.nn.Module): The PyTorch model to be trained and tested.
+      train_dataloader (torch.utils.data.DataLoader): DataLoader for training data.
+      test_dataloader (torch.utils.data.DataLoader): DataLoader for testing data.
+      optimizer (torch.optim.Optimizer): Optimizer to update model parameters.
+      loss_fn (torch.nn.Module): Loss function to compute the error.
+      epochs (int): Number of training epochs.
+      device (torch.device): Device on which to perform computations ("cuda" or "cpu").
 
   Returns:
-  A dictionary of training and testing loss as well as training and
-  testing accuracy metrics. Each metric has a value in a list for
-  each epoch.
-  In the form: {train_loss: [...],
-            train_acc: [...],
-            test_loss: [...],
-            test_acc: [...]}
-  For example if training for epochs=2:
-           {train_loss: [2.0616, 1.0537],
-            train_acc: [0.3945, 0.3945],
-            test_loss: [1.2641, 1.5706],
-            test_acc: [0.3400, 0.2973]}
+      Dict[str, List]: A dictionary containing training and testing metrics:
+          {
+              "train_loss": [<float>, <float>, ...],
+              "train_acc": [<float>, <float>, ...],
+              "test_loss": [<float>, <float>, ...],
+              "test_acc": [<float>, <float>, ...]
+          }
+
+  Example:
+      results = train(model, train_loader, test_loader, optimizer,
+                      loss_fn, epochs=10, device=torch.device("cuda"))
   """
+
   # Create empty results dictionary
   results = {"train_loss": [],
              "train_acc": [],
