@@ -113,23 +113,23 @@ python main.py --model_type MODEL_TYPE
 
 You can customize training with the following optional arguments:
 
-| Argument          | Description                      | Default Value   |
-|-------------------|----------------------------------|-----------------|
-| `--model_name`    | Name of the model and log file   | `model`         |
-| `--num_epochs`    | Number of epochs to train        | `20`            |
-| `--batch_size`    | Batch size used during training  | `32`            |
-| `--hidden_units`  | The size of the hidden units     | `10`            |
-| `--learning_rate` | Learning rate for optimizer      | `0.0001`        |
+| Argument          | Description                      | Default Value  |
+|-------------------|----------------------------------|----------------|
+| `--model_name`    | Name of the model and log file   | `model`        |
+| `--num_epochs`    | Number of epochs to train        | `20`           |
+| `--batch_size`    | Batch size used during training  | `32`           |
+| `--hidden_units`  | The size of the hidden units     | `10`           |
+| `--learning_rate` | Learning rate for optimizer      | `0.001`        |
 | `--train_dir`     | Directory path for training data | `./input/train` |
-| `--test_dir`      | Directory path for test data     | `./input/test`  |
+| `--test_dir`      | Directory path for test data     | `./input/test` |
 
 ### 🧪 Example
 
 ```bash
-python main.py --model_type TINY_VGG --model_name TINY_VGG4 --num_epochs 80 --hidden_units 100 --train_dir "./data/train" --test_dir "./data/test"
+python main.py --model_type TINY_VGG --model_name TINY_VGG4 --num_epochs 20 --hidden_units 32 --train_dir "./data/train" --test_dir "./data/test"
 ```
 
-This command will train the `TinyVGG` model for 25 epochs with a learning rate of `0.001` and save the model as `tiny_vgg_model.pth`.
+This command will train the `TINY_VGG` model for 20 epochs with a learning rate of `0.001` and save the model as `TINY_VGG4.pth`.
 
 ## Logs
 
