@@ -32,12 +32,20 @@ README.md                # You're here!
 This project uses the [Animals10 dataset](https://www.kaggle.com/datasets/alessiocorrado99/animals10) from Kaggle.
 The dataset contains 10 categories of animal images such as cat, dog, horse, sheep, elephant, butterfly, chicken, cow, spider, and squirrel.
 
-You can download the dataset directly using:
+First you should save your kaggle authentication data (your json file downloaded from the site) on your computer:
 
 ```aiignore
-kaggle datasets download -d alessiocorrado99/animals10 --unzip
+!mkdir -p ~/.kaggle
+!mv kaggle.json ~/.kaggle/
+!chmod 600 ~/.kaggle/kaggle.json
+```
+After that, you can download the dataset directly:
+
+```aiignore
+!kaggle datasets download -d alessiocorrado99/animals10 --unzip
 ```
 Each subfolder inside `train/` and `test/` represents a class label.
+You can save the data into the `input/` folder.
 
 ## Supported Architectures
 
