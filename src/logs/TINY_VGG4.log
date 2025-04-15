@@ -1,0 +1,44 @@
+2025-04-15 13:56:59,788 - INFO - Training model started ..
+2025-04-15 13:56:59,788 - INFO - Training configuration:
+2025-04-15 13:56:59,788 - INFO -   num_epochs     = 80
+2025-04-15 13:56:59,788 - INFO -   batch_size     = 32
+2025-04-15 13:56:59,788 - INFO -   hidden_units   = 100
+2025-04-15 13:56:59,788 - INFO -   learning_rate  = 0.0001
+2025-04-15 13:57:10,096 - INFO - Training model started ..
+2025-04-15 13:57:10,096 - INFO - Training configuration:
+2025-04-15 13:57:10,096 - INFO -   num_epochs     = 80
+2025-04-15 13:57:10,096 - INFO -   batch_size     = 32
+2025-04-15 13:57:10,096 - INFO -   hidden_units   = 100
+2025-04-15 13:57:10,096 - INFO -   learning_rate  = 0.0001
+2025-04-15 13:57:10,456 - INFO - Number of classes = 10
+2025-04-15 13:57:10,456 - INFO - Model type: ModelType.TINY_VGG
+2025-04-15 13:57:10,456 - INFO - Model configuration: 
+TinyVGG(
+  (conv_block_1): Sequential(
+    (0): Conv2d(3, 100, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU()
+    (2): Conv2d(100, 100, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU()
+    (4): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  )
+  (conv_block_2): Sequential(
+    (0): Conv2d(100, 100, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU()
+    (2): Conv2d(100, 100, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU()
+    (4): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  )
+  (classifier): Sequential(
+    (0): Flatten(start_dim=1, end_dim=-1)
+    (1): Linear(in_features=280900, out_features=10, bias=True)
+  )
+)
+2025-04-15 14:01:44,865 - INFO - Epoch: 1 | train_loss: 1.6183 | train_acc: 0.4395 | test_loss: 1.3966 | test_acc: 0.5197
+2025-04-15 14:06:22,355 - INFO - Epoch: 2 | train_loss: 1.1551 | train_acc: 0.6139 | test_loss: 1.2203 | test_acc: 0.5948
+2025-04-15 14:10:59,941 - INFO - Epoch: 3 | train_loss: 0.7657 | train_acc: 0.7469 | test_loss: 1.1546 | test_acc: 0.6257
+2025-04-15 14:15:37,264 - INFO - Epoch: 4 | train_loss: 0.3723 | train_acc: 0.8830 | test_loss: 1.3827 | test_acc: 0.6145
+2025-04-15 14:20:17,289 - INFO - Epoch: 5 | train_loss: 0.1246 | train_acc: 0.9642 | test_loss: 1.7341 | test_acc: 0.6202
+2025-04-15 14:24:55,869 - INFO - Epoch: 6 | train_loss: 0.0496 | train_acc: 0.9861 | test_loss: 2.0925 | test_acc: 0.6190
+2025-04-15 14:24:55,869 - INFO - Stopping early at epoch 6 because train_loss < 0.1
+2025-04-15 14:24:55,869 - INFO - [INFO] Saving model to: models/TINY_VGG4.pth
+2025-04-15 14:24:55,896 - INFO - Training model finished ..

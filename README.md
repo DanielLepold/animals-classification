@@ -18,6 +18,7 @@ This project implements an image classification pipeline for animal images using
 │   └── your_models.pth   # Saved trained models
 ├── data_setup.py        # Contains logic to prepare DataLoaders
 ├── engine.py            # Training and evaluation loop functions
+├── helper.py            # Helper function for reorganisation of train,test data
 ├── logger.py            # Logging configuration
 ├── main.py              # Main
 ├── model_builder.py     # Functions to create and configure models
@@ -46,8 +47,20 @@ After that, you can download the dataset directly:
 ```aiignore
 !kaggle datasets download -d alessiocorrado99/animals10 --unzip
 ```
-Each subfolder inside `train/` and `test/` represents a class label.
-You can save the data into the `input/` folder.
+### Organize the dataset into `train` and `test` folders:
+
+After downloading, run the helper script to automatically split the dataset into training and testing sets:
+
+```bash
+python helper.py
+```
+
+After running the script, your folder structure should look like this:
+
+```
+./input/train/<class_names>/
+./input/test/<class_names>/
+```
 
 ## Supported Architectures
 
@@ -83,22 +96,46 @@ After installation, you can verify that the required packages are installed by r
 pip list
 ```
 
-## Training
+---
 
-To train a model, use the `train_model()` function from `train.py`. Here's a sample usage:
+## 🚀 Running the Training Script
 
-```aiignore
-train_model(
-    num_epochs=10,
-    batch_size=32,
-    hidden_units=128,
-    learning_rate=0.001,
-    model_name="animal_classifier_tinyvgg",
-    model_type=ModelType.TINY_VGG,
-    train_dir="path/to/train",
-    test_dir="path/to/test"
-)
+To train a model, run the following script from the root directory, where the main is located:
+
+```bash
+python main.py --model_type MODEL_TYPE
 ```
+
+`MODEL_TYPE` is **required** and must be one of the following:
+- `TINY_VGG`
+- `RESNET18`
+- `VGG16`
+
+### Optional Arguments
+
+You can customize training with the following optional arguments:
+
+| Argument          | Description                      | Default Value   |
+|-------------------|----------------------------------|-----------------|
+| `--model_name`    | Name of the model and log file   | `model`         |
+| `--num_epochs`    | Number of epochs to train        | `20`            |
+| `--batch_size`    | Batch size used during training  | `32`            |
+| `--hidden_units`  | The size of the hidden units     | `10`            |
+| `--learning_rate` | Learning rate for optimizer      | `0.0001`        |
+| `--train_dir`     | Directory path for training data | `./input/train` |
+| `--test_dir`      | Directory path for test data     | `./input/test`  |
+
+---
+
+### 🧪 Example
+
+```bash
+python main.py --model_type TINY_VGG --model_name TINY_VGG4 --num_epochs 80 --hidden_units 100 --train_dir "./data/train" --test_dir "./data/test"
+```
+
+This command will train the `TinyVGG` model for 25 epochs with a learning rate of `0.001` and save the model as `tiny_vgg_model.pth`.
+
+---
 
 ## Logs
 
@@ -113,11 +150,9 @@ Accuracy and loss are printed during training, and evaluation is performed after
 Trained models are automatically saved to the models/ directory with the name format: <model_name>.pth.
 
 
-
 ## Results
 
 You can track training loss and accuracy in the logs or by extending the code with visualization tools like Matplotlib or TensorBoard.
-
 
 
 ## 📈 Future improvements

@@ -213,10 +213,10 @@ def train(model: torch.nn.Module,
     results["test_acc"].append(test_acc)
 
     # Early stopping condition
-    if train_loss < 0.2:
+    if train_loss < 0.1:
       logger.info(
-        f"Stopping early at epoch {epoch + 1} because train_loss < 0.2")
-      print(f"Stopping early at epoch {epoch + 1} because train_loss < 0.2")
+        f"Stopping early at epoch {epoch + 1} because train_loss < 0.1")
+      print(f"Stopping early at epoch {epoch + 1} because train_loss < 0.1")
       break  # Exit the training loop
 
   # Return the filled results at the end of the epochs
