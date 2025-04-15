@@ -7,19 +7,28 @@ logger = logging.getLogger("logger")
 def save_model(model: torch.nn.Module,
                target_dir: str,
                model_name: str):
-    """Saves a PyTorch model to a target directory.
+    """
+    Saves a trained PyTorch model to a specified directory.
+
+    This function creates the target directory if it doesn't exist,
+    checks that the filename has the correct extension, and then saves
+    the model's state dictionary to the given path.
 
     Args:
-    model: A target PyTorch model to save.
-    target_dir: A directory for saving the model to.
-    model_name: A filename for the saved model. Should include
-      either ".pth" or ".pt" as the file extension.
+        model (torch.nn.Module): The PyTorch model to save.
+        target_dir (str): Directory path where the model will be saved.
+        model_name (str): Name of the file to save the model as.
+                          Must end with ".pt" or ".pth".
 
-    Example usage:
-    save_model(model=model_0,
-               target_dir="models",
-               model_name="05_going_modular_tingvgg_model.pth")
+    Raises:
+        AssertionError: If the provided model_name does not end with '.pt' or '.pth'.
+
+    Example:
+        save_model(model=my_model,
+                   target_dir="models",
+                   model_name="my_model.pth")
     """
+
     target_dir_path = Path(target_dir)
     target_dir_path.mkdir(parents=True,
                         exist_ok=True)
