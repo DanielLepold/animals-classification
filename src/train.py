@@ -2,6 +2,10 @@ import torch
 import data_setup, engine, model_builder, utils
 import model_types
 from torchvision import transforms
+from torchvision.models import ResNet18_Weights
+from torchvision.models import VGG16_Weights
+
+
 import logging as log
 
 logger = log.getLogger("logger")
@@ -47,22 +51,16 @@ def train_model(num_epochs: int,
 
 
   if model_type == model_types.ModelType.VGG16:
-    data_transform = transforms.Compose([
-      transforms.Resize((224, 224)),
-      transforms.ToTensor(),
-      transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-    ])
+    weights = VGG16_Weights.DEFAULT
+    data_transform = weights.transforms()
   elif model_type == model_types.ModelType.RESNET18:
-    data_transform = transforms.Compose([
-      transforms.Resize(256),
-      transforms.CenterCrop(224),
-      transforms.ToTensor(),
-      transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                           std=[0.229, 0.224, 0.225])
-    ])
+    weights = ResNet18_Weights.DEFAULT
+    data_transform = weights.transforms()
   else:
     data_transform = transforms.Compose([
-      transforms.Resize((64, 64)),
+      transforms.Resize((224, 224)),
+      transforms.RandomHorizontalFlip(),
+      transforms.RandomRotation(10),
       transforms.ToTensor()
     ])
 
