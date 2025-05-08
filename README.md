@@ -15,7 +15,7 @@ This project implements an image classification pipeline for animal images using
 ├── logs/
 │   └── your_logs.pth    # Saved logs during running
 ├── models/
-│   └── your_models.pth   # Saved trained models
+│   └── your_models.pth  # Saved trained models
 ├── data_setup.py        # Contains logic to prepare DataLoaders
 ├── engine.py            # Training and evaluation loop functions
 ├── helper.py            # Helper function for reorganisation of train,test data
